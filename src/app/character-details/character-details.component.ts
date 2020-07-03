@@ -22,11 +22,18 @@ export class CharacterDetailsComponent implements OnInit {
   constructor(private activatedRoute:ActivatedRoute,private router:Router, private _ocService:SwitchingOcsService) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params=>{
-      let id = +params.get('id')
-      this._ocService.getOc(id).subscribe((oc)=> this.character = oc);
+//     this.activatedRoute.paramMap.subscribe(params=>{
+//       let id = +params.get('id')
+//       this._ocService.getOc(id).subscribe((oc)=> this.character = oc);
     
- })
+//  })
+
+ this.activatedRoute.paramMap.subscribe(params => {
+  let id = +params.get('id');
+  if (id) {
+    this.getCharacter(id);
+  }
+});
 
 // this.activatedRoute.paramMap.subscribe(params => {
 //   let id = +params.get('id');
@@ -44,7 +51,9 @@ export class CharacterDetailsComponent implements OnInit {
 // this.getCharacters(); 
 
     }
-    // getCharacters(): void {
+    getCharacter(id): any {
+      this._ocService.getOc(id).subscribe((character) => this.character = character);
+    }
     //   this._ocService.getOcs()
     //       .subscribe(
     //           users => {

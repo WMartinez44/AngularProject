@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onSelect(oc){
-    this.router.navigate(['/character',oc.id]);
+    this.router.navigate(['/Character/',oc.id]);
   }
 
 }
